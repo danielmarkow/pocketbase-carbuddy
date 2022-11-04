@@ -1,7 +1,5 @@
-import {useState} from "react";
-
 import {useForm} from "react-hook-form";
-import {useLocation} from "wouter";
+import { useNavigate } from "react-router-dom";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -14,7 +12,8 @@ const loginSchema = yup.object({
 
 function Login() {
   const {pbClient, onLogin} = useAuth();
-  const [location, setLocation] = useLocation();
+  const navigate = useNavigate();
+  
   const {register, handleSubmit, formState: {errors}} = useForm({
     resolver: yupResolver(loginSchema)
   });
@@ -22,7 +21,7 @@ function Login() {
 
   const onSubmit = (data) => {
     onLogin(data.emailInp, data.pwInp);
-    setLocation("/");
+    navigate("/");
   };
 
   pbClient.authStore.model
