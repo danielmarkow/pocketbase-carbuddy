@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 import {useForm} from "react-hook-form";
 import {useLocation} from "wouter";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -11,7 +13,7 @@ const loginSchema = yup.object({
 })
 
 function Login() {
-  const {client, onLogin} = useAuth();
+  const {pbClient, onLogin} = useAuth();
   const [location, setLocation] = useLocation();
   const {register, handleSubmit, formState: {errors}} = useForm({
     resolver: yupResolver(loginSchema)
@@ -23,28 +25,33 @@ function Login() {
     setLocation("/");
   };
 
+  pbClient.authStore.model
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="emailInp">Email: </label>
-      <input
-          id="emailInp"
-          type="input"
-          placeholder="name@domain.com"
-          {...register("emailInp")}
-      />
-      {errors.emailInp?.message}
-      <br />
-      <label htmlFor="pwInp">Password: </label>
-      <input
-          id="pwInp"
-          type="password"
-          placeholder="Password"
-          {...register("pwInp")}
-      />
-      {errors.pwInp?.message}
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+      <>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="emailInp">Email: </label>
+          <input
+              id="emailInp"
+              type="input"
+              placeholder="name@domain.com"
+              {...register("emailInp")}
+          />
+          {errors.emailInp?.message}
+          <br />
+          <label htmlFor="pwInp">Password: </label>
+          <input
+              id="pwInp"
+              type="password"
+              placeholder="Password"
+              {...register("pwInp")}
+          />
+          {errors.pwInp?.message}
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+        {JSON.stringify(pbClient.authStore.model)}
+      </>
   );
 }
 
