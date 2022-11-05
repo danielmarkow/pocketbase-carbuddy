@@ -1,5 +1,3 @@
-import {useEffect, useRef, useState} from "react";
-
 import {useForm} from "react-hook-form";
 import {useLocation} from "wouter";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -14,7 +12,7 @@ const loginSchema = yup.object({
 })
 
 function Login() {
-  const {pbClient, onLogin} = useAuth();
+  const {onLogin} = useAuth();
   const [location, setLocation] = useLocation();
   const {register, handleSubmit, formState: {errors}} = useForm({
     resolver: yupResolver(loginSchema)
