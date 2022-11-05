@@ -1,15 +1,9 @@
 import {Link} from "wouter";
 
 import useAuth from "../hooks/useAuth.js";
-import {useEffect} from "react";
 
 function Home() {
   const {pbClient, onLogout} = useAuth();
-
-  useEffect(() => {
-    console.log(document.referrer)
-  })
-
 
   return (
       <>

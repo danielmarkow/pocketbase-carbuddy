@@ -1,3 +1,4 @@
+import {useState} from "react";
 import PocketBase from "pocketbase/cjs";
 
 import {AuthContext} from "./AuthContext.js";
@@ -6,8 +7,8 @@ function AuthProvider({children}) {
   const client = new PocketBase("http://127.0.0.1:8090");
 
   const handleLogin = (email, password) => {
-    client.users.authViaEmail(email, password)
-        .catch((err) => console.log(err));
+    return client.users.authViaEmail(email, password)
+        // .catch((err) => console.log(err));
   };
 
   const handleLogout = () => {
