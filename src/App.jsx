@@ -4,6 +4,7 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import AuthProvider from "./context/AuthProvider.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
+import Navbar from "./components/common/Navbar.jsx";
 
 import './App.css'
 
@@ -13,8 +14,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Route path="/" component={Home} />
-        <Route path="/login" component={Login} />
+        <Navbar />
+        <br />
+        <div className="flex w-full">
+          <Route path="/" component={Home} />
+          <Route path="/login" component={Login} />
+        </div>
       </AuthProvider>
     </QueryClientProvider>
   )

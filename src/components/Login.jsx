@@ -29,41 +29,58 @@ function Login() {
   };
 
   return (
-      <>
+      <div>
         {mutation.isLoading && (
             <p>logging in...</p>
         )}
         {mutation.isIdle && (
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="emailInp">Email: </label>
-            <input
-                id="emailInp"
-                type="input"
-                placeholder="name@domain.com"
-                {...register("emailInp")}
-            />
-            {errors.emailInp?.message}
-            <br />
-            <label htmlFor="pwInp">Password: </label>
-            <input
-                id="pwInp"
-                type="password"
-                placeholder="Password"
-                {...register("pwInp")}
-            />
-            {errors.pwInp?.message}
-            <br />
-            <button type="submit">Submit</button>
+            <div className="form-control">
+              <label
+                  className="input-group"
+                  htmlFor="emailInp"
+              ><span>Email: </span></label>
+              <input
+                  className="input input-bordered"
+                  id="emailInp"
+                  type="input"
+                  placeholder="name@domain.com"
+                  {...register("emailInp")}
+              />
+              {errors.emailInp?.message}
+              <br />
+              <label
+                  className="input-group"
+                  htmlFor="pwInp"
+              ><span>Password: </span></label>
+              <input
+                  className="input input-bordered"
+                  id="pwInp"
+                  type="password"
+                  placeholder="Password"
+                  {...register("pwInp")}
+              />
+              {errors.pwInp?.message}
+              <br />
+              <button
+                  className="btn btn-outline"
+                  type="submit"
+              >Submit</button>
+            </div>
           </form>
         )}
         {mutation.isSuccess && (
             <>
-              <p>login successfully</p>
-              <button onClick={() => setLocation("/")}>return home</button>
+              <p>logged in successfully</p>
+              <br />
+              <button
+                  className="btn btn-outline"
+                  onClick={() => setLocation("/")}
+              >Return Home</button>
             </>
 
         )}
-      </>
+      </div>
   );
 }
 
